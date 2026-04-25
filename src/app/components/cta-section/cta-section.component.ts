@@ -1,7 +1,8 @@
-import { Component, AfterViewInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ProductService } from '../../services/product.service';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -69,12 +70,12 @@ gsap.registerPlugin(ScrollTrigger);
           <div class="product-card">
             <div class="product-badge">Best Seller</div>
             <img 
-              src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=400&h=500&fit=crop" 
-              alt="Smitha Pure Life Avosilk Bloom Conditioner"
+              [src]="product.image" 
+              [alt]="product.name"
               class="product-image"
             />
             <div class="product-info">
-              <h3>Avosilk Bloom Conditioner</h3>
+              <h3>{{ product.name }}</h3>
               <div class="product-rating">
                 @for (star of [1,2,3,4,5]; track star) {
                   <svg width="14" height="14" viewBox="0 0 24 24">
@@ -84,8 +85,8 @@ gsap.registerPlugin(ScrollTrigger);
                 <span>4.9 (2,847 reviews)</span>
               </div>
               <div class="product-price">
-                <span class="price-original">$49.99</span>
-                <span class="price-sale">$39.99</span>
+                <span class="price-original" *ngIf="product.salePrice">{{ product.price | currency }}</span>
+                <span class="price-sale">{{ (product.salePrice || product.price) | currency }}</span>
               </div>
             </div>
           </div>
@@ -351,6 +352,9 @@ export class CtaSectionComponent implements AfterViewInit, OnDestroy {
   @ViewChild('ctaSection') ctaSection!: ElementRef;
   @ViewChild('ctaContent') ctaContent!: ElementRef;
   @ViewChild('ctaProduct') ctaProduct!: ElementRef;
+
+  private productService = inject(ProductService);
+  product = this.productService.products()[1]; // Use Nature's Therapy Hair Wash
 
   private scrollTriggers: ScrollTrigger[] = [];
 

@@ -1,7 +1,8 @@
-import { Component, AfterViewInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ProductService } from '../../services/product.service';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,8 +17,8 @@ gsap.registerPlugin(ScrollTrigger);
           <div class="about-image" #aboutImage>
             <div class="image-wrapper">
               <img 
-                src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=700&fit=crop" 
-                alt="Natural herbal ingredients"
+                [src]="product.image" 
+                [alt]="product.name"
               />
               <div class="image-accent"></div>
             </div>
@@ -240,6 +241,9 @@ export class AboutSectionComponent implements AfterViewInit, OnDestroy {
   @ViewChild('aboutImage') aboutImage!: ElementRef;
   @ViewChild('aboutContent') aboutContent!: ElementRef;
   @ViewChild('floatingBadge') floatingBadge!: ElementRef;
+
+  private productService = inject(ProductService);
+  product = this.productService.products()[0];
 
   private scrollTriggers: ScrollTrigger[] = [];
 

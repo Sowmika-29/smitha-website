@@ -11,15 +11,7 @@ import { CommonModule } from '@angular/common';
         <div class="footer-main">
           <div class="footer-brand">
             <a href="#" class="logo">
-              <svg class="logo-icon" viewBox="0 0 40 40" fill="none">
-                <path 
-                  d="M20 4C20 4 10 10 10 20C10 30 20 36 20 36C20 36 30 30 30 20C30 10 20 4 20 4Z" 
-                  stroke="currentColor" 
-                  stroke-width="1.5"
-                  fill="none"
-                />
-                <path d="M20 10V30" stroke="currentColor" stroke-width="1"/>
-              </svg>
+              <img src="assets/images/smitha-logo.jpeg" alt="Smitha Pure Life" class="logo-image" />
               <span class="logo-text">Smitha Pure Life</span>
             </a>
             <p class="brand-description">
@@ -143,9 +135,10 @@ import { CommonModule } from '@angular/common';
         margin-bottom: 1rem;
       }
       
-      .logo-icon {
-        width: 32px;
-        height: 32px;
+      .logo-image {
+        height: 40px;
+        width: auto;
+        object-fit: contain;
       }
       
       .logo-text {

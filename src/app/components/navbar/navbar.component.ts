@@ -9,20 +9,12 @@ import { CommonModule } from '@angular/common';
     <nav class="navbar" [class.scrolled]="isScrolled()" [class.hidden]="isHidden()">
       <div class="navbar-container">
         <a href="#" class="logo">
-          <svg class="logo-icon" viewBox="0 0 40 40" fill="none">
-            <path 
-              d="M20 4C20 4 10 10 10 20C10 30 20 36 20 36C20 36 30 30 30 20C30 10 20 4 20 4Z" 
-              stroke="currentColor" 
-              stroke-width="1.5"
-              fill="none"
-            />
-            <path d="M20 10V30" stroke="currentColor" stroke-width="1"/>
-          </svg>
+          <img src="assets/images/smitha-logo.jpeg" alt="Smitha Pure Life" class="logo-image" />
           <span class="logo-text">Smitha Pure Life</span>
         </a>
         
         <div class="nav-links" [class.open]="menuOpen()">
-          <a href="#product" class="nav-link">Product</a>
+          <a href="#products" class="nav-link">Products</a>
           <a href="#ingredients" class="nav-link">Ingredients</a>
           <a href="#benefits" class="nav-link">Benefits</a>
           <a href="#testimonials" class="nav-link">Reviews</a>
@@ -77,10 +69,10 @@ import { CommonModule } from '@angular/common';
       color: var(--color-primary);
     }
     
-    .logo-icon {
-      width: 32px;
-      height: 32px;
-      color: var(--color-primary);
+    .logo-image {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
     }
     
     .logo-text {

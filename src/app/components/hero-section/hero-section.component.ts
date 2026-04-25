@@ -1,6 +1,7 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, signal } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { gsap } from 'gsap';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-hero-section',
@@ -440,7 +441,8 @@ export class HeroSectionComponent implements OnInit, AfterViewInit {
   @ViewChild('heroVisual') heroVisual!: ElementRef;
   @ViewChild('scrollIndicator') scrollIndicator!: ElementRef;
 
-  productImage = 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=400&h=500&fit=crop';
+  private productService = inject(ProductService);
+  productImage = this.productService.products()[0].image;
 
   ngOnInit(): void {}
 

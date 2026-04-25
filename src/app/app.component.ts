@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HeroSectionComponent } from './components/hero-section/hero-section.component';
-import { Product3dShowcaseComponent } from './components/product-3d-showcase/product-3d-showcase.component';
+import { ProductShowcaseComponent } from './components/product-showcase/product-showcase.component';
 import { AboutSectionComponent } from './components/about-section/about-section.component';
 import { IngredientsParallaxComponent } from './components/ingredients-parallax/ingredients-parallax.component';
 import { BenefitsSectionComponent } from './components/benefits-section/benefits-section.component';
@@ -18,7 +18,7 @@ import { LoadingScreenComponent } from './components/loading-screen/loading-scre
     NavbarComponent,
     LoadingScreenComponent,
     HeroSectionComponent,
-    Product3dShowcaseComponent,
+    ProductShowcaseComponent,
     AboutSectionComponent,
     IngredientsParallaxComponent,
     BenefitsSectionComponent,
@@ -32,7 +32,7 @@ import { LoadingScreenComponent } from './components/loading-screen/loading-scre
     <app-navbar />
     <main>
       <app-hero-section />
-      <app-product-3d-showcase />
+      <app-product-showcase />
       <app-about-section />
       <app-ingredients-parallax />
       <app-benefits-section />
