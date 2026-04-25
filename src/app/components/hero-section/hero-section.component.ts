@@ -17,32 +17,32 @@ import { gsap } from 'gsap';
       
       <div class="hero-content container">
         <div class="hero-text">
-          <span class="tagline" #tagline>100% Natural Ayurvedic Formula</span>
+          <span class="tagline" #tagline>100% Natural &bull; Chemical-Free &bull; Ayurvedic Care</span>
           <h1 class="heading-display heading-xl" #headline>
-            <span class="line">Transform Your</span>
-            <span class="line accent">Hair Naturally</span>
+            <span class="line">Pure Nature.</span>
+            <span class="line accent">Powerful Hair Transformation.</span>
           </h1>
           <p class="hero-description body-lg" #description>
-            Discover the ancient wisdom of Ayurveda with our premium herbal hair powder. 
-            Crafted with rare botanical ingredients to nourish, strengthen, and revitalize your hair.
+            Experience the richness of hibiscus, shikakai, and herbal powders crafted to 
+            nourish, strengthen, and revive your hair naturally.
           </p>
           <div class="hero-cta" #ctaButtons>
             <button class="btn btn-primary">
-              Discover Now
+              Shop Now
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
             </button>
-            <button class="btn btn-outline">Watch Story</button>
+            <button class="btn btn-outline">Explore Ingredients</button>
           </div>
           <div class="hero-stats" #stats>
             <div class="stat">
-              <span class="stat-number">15+</span>
-              <span class="stat-label">Natural Herbs</span>
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Natural Ingredients</span>
             </div>
             <div class="stat">
-              <span class="stat-number">98%</span>
-              <span class="stat-label">Customer Satisfaction</span>
+              <span class="stat-number">0%</span>
+              <span class="stat-label">Harsh Chemicals</span>
             </div>
             <div class="stat">
               <span class="stat-number">50K+</span>
@@ -56,22 +56,22 @@ import { gsap } from 'gsap';
           <div class="product-container">
             <img 
               [src]="productImage" 
-              alt="Herbalia Premium Herbal Hair Powder" 
+              alt="Smitha Pure Life Avosilk Bloom Conditioner" 
               class="product-image"
             />
           </div>
           <div class="floating-ingredients">
             <div class="ingredient ingredient-1">
-              <img src="https://images.unsplash.com/photo-1515586838455-8f8f940d6853?w=100&h=100&fit=crop" alt="Amla" />
-              <span>Amla</span>
+              <img src="https://images.unsplash.com/photo-1596178060810-72f53ce9a65c?w=100&h=100&fit=crop" alt="Hibiscus" />
+              <span>Hibiscus</span>
             </div>
             <div class="ingredient ingredient-2">
-              <img src="https://images.unsplash.com/photo-1600335895229-6e75511892c8?w=100&h=100&fit=crop" alt="Bhringraj" />
-              <span>Bhringraj</span>
-            </div>
-            <div class="ingredient ingredient-3">
               <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=100&h=100&fit=crop" alt="Shikakai" />
               <span>Shikakai</span>
+            </div>
+            <div class="ingredient ingredient-3">
+              <img src="https://images.unsplash.com/photo-1523293915678-d126868e96f1?w=100&h=100&fit=crop" alt="Herbal Powder" />
+              <span>Herbal</span>
             </div>
           </div>
         </div>

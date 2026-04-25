@@ -20,11 +20,11 @@ import { CommonModule } from '@angular/common';
                 />
                 <path d="M20 10V30" stroke="currentColor" stroke-width="1"/>
               </svg>
-              <span class="logo-text">Herbalia</span>
+              <span class="logo-text">Smitha Pure Life</span>
             </a>
             <p class="brand-description">
-              Premium Ayurvedic hair care products crafted with ancient wisdom 
-              and modern science for naturally beautiful hair.
+              Rooted in nature. Powered by tradition. Premium Ayurvedic hair care 
+              products crafted for naturally beautiful hair.
             </p>
             <div class="social-links">
               <a href="#" aria-label="Facebook">
@@ -97,7 +97,7 @@ import { CommonModule } from '@angular/common';
         
         <div class="footer-bottom">
           <div class="copyright">
-            <p>&copy; 2026 Herbalia. All rights reserved.</p>
+            <p>&copy; 2026 Smitha Pure Life. All rights reserved.</p>
           </div>
           <div class="legal-links">
             <a href="#">Privacy Policy</a>

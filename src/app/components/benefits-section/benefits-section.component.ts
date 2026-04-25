@@ -20,11 +20,11 @@ interface Benefit {
       <div class="container">
         <div class="benefits-layout">
           <div class="benefits-content" #benefitsContent>
-            <span class="section-tag">Why Choose Herbalia</span>
-            <h2 class="heading-display heading-lg">Benefits That Speak for Themselves</h2>
+            <span class="section-tag">The Difference</span>
+            <h2 class="heading-display heading-lg">Why Your Hair Will Love It</h2>
             <p class="body-lg">
-              Our unique formula combines ancient wisdom with modern science 
-              to deliver results you can see and feel.
+              Our unique formula combines ancient Ayurvedic wisdom with premium natural 
+              ingredients to deliver visible results you can see and feel.
             </p>
             
             <div class="benefits-list">
@@ -326,31 +326,39 @@ export class BenefitsSectionComponent implements AfterViewInit, OnDestroy {
       icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
       </svg>`,
-      title: 'Strengthens Hair Roots',
-      description: 'Deep nourishment for stronger, more resilient hair from the roots.'
+      title: 'Reduces Hair Fall Naturally',
+      description: 'Gentle herbal formula that strengthens roots and minimizes breakage.'
+    },
+    {
+      icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      </svg>`,
+      title: 'Stronger, Thicker Hair',
+      description: 'Promotes visibly stronger and thicker hair growth over time.'
     },
     {
       icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <circle cx="12" cy="12" r="5"/>
         <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
       </svg>`,
-      title: 'Adds Natural Shine',
-      description: 'Restores brilliance and luster without artificial chemicals.'
+      title: 'Softness & Shine',
+      description: 'Adds natural softness and brilliant shine without chemicals.'
     },
     {
       icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        <path d="M9 12l2 2 4-4"/>
       </svg>`,
-      title: 'Reduces Hair Fall',
-      description: 'Clinically proven to reduce hair fall by up to 60% in 8 weeks.'
+      title: 'Improved Scalp Health',
+      description: 'Nourishes and balances the scalp for healthier hair growth.'
     },
     {
       icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
-        <path d="M12 6v6l4 2"/>
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
       </svg>`,
-      title: 'Quick Results',
-      description: 'See visible improvement in hair texture within just 2 weeks.'
+      title: 'Free From Harsh Chemicals',
+      description: 'No sulphates, parabens, or silicones - just pure nature.'
     }
   ];
 

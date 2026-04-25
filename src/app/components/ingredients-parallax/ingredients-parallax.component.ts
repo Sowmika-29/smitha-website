@@ -19,11 +19,11 @@ interface Ingredient {
   template: `
     <section class="ingredients" id="ingredients" #ingredientsSection>
       <div class="ingredients-header container" #header>
-        <span class="section-tag">Natural Ingredients</span>
-        <h2 class="heading-display heading-lg">The Power of Nature</h2>
+        <span class="section-tag">Key Ingredients</span>
+        <h2 class="heading-display heading-lg">Powered by Nature</h2>
         <p class="section-intro body-lg">
-          Each ingredient is carefully selected for its unique properties, 
-          creating a synergistic blend that transforms your hair.
+          Each ingredient is carefully selected from traditional Ayurvedic recipes, 
+          creating a synergistic blend that transforms your hair naturally.
         </p>
       </div>
       
@@ -249,27 +249,21 @@ export class IngredientsParallaxComponent implements AfterViewInit, OnDestroy {
 
   ingredients: Ingredient[] = [
     {
-      name: 'Amla',
-      description: 'Rich in Vitamin C and antioxidants, Amla strengthens hair follicles and promotes natural shine.',
+      name: 'Hibiscus',
+      description: 'Strengthens hair, promotes growth, and adds natural shine. Rich in vitamins and antioxidants.',
       benefit: 'Strengthens & adds shine',
-      image: 'https://images.unsplash.com/photo-1515586838455-8f8f940d6853?w=600&h=800&fit=crop'
-    },
-    {
-      name: 'Bhringraj',
-      description: 'Known as the "King of Herbs" for hair, it stimulates growth and prevents premature greying.',
-      benefit: 'Stimulates growth',
-      image: 'https://images.unsplash.com/photo-1600335895229-6e75511892c8?w=600&h=800&fit=crop'
+      image: 'https://images.unsplash.com/photo-1596178060810-72f53ce9a65c?w=600&h=800&fit=crop'
     },
     {
       name: 'Shikakai',
-      description: 'Natural cleanser with low pH that gently removes dirt while maintaining scalp health.',
-      benefit: 'Natural cleanser',
+      description: 'A gentle natural cleanser that improves scalp health and reduces hair fall without stripping natural oils.',
+      benefit: 'Gentle natural cleanser',
       image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&h=800&fit=crop'
     },
     {
-      name: 'Brahmi',
-      description: 'Nourishes the scalp, reduces hair fall, and promotes thicker, healthier hair growth.',
-      benefit: 'Reduces hair fall',
+      name: 'Herbal Powder Blend',
+      description: 'A powerful mix of traditional herbs that detoxify, nourish, and protect your hair from damage.',
+      benefit: 'Detoxify & protect',
       image: 'https://images.unsplash.com/photo-1523293915678-d126868e96f1?w=600&h=800&fit=crop'
     }
   ];

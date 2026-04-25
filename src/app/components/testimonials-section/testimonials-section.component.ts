@@ -24,7 +24,7 @@ interface Testimonial {
       <div class="container">
         <div class="testimonials-header" #header>
           <span class="section-tag">Customer Stories</span>
-          <h2 class="heading-display heading-lg">Real Results, Real People</h2>
+          <h2 class="heading-display heading-lg">Real Results, Real Stories</h2>
           <p class="body-lg">
             Join thousands of satisfied customers who have transformed their hair naturally.
           </p>
@@ -416,7 +416,7 @@ export class TestimonialsSectionComponent implements AfterViewInit, OnDestroy {
       location: 'Mumbai, India',
       avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
       rating: 5,
-      text: 'After just 3 weeks of using Herbalia, my hair fall reduced dramatically. The natural shine is back and my hair feels incredibly soft. This is the best hair product I have ever used!',
+      text: 'My hair feels softer and healthier within weeks. The shine is unbelievable! This is the best natural hair product I have ever used.',
       beforeImage: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=200&h=200&fit=crop',
       afterImage: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=200&h=200&fit=crop'
     },
@@ -425,7 +425,7 @@ export class TestimonialsSectionComponent implements AfterViewInit, OnDestroy {
       location: 'Los Angeles, USA',
       avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop',
       rating: 5,
-      text: 'I was skeptical at first, but Herbalia completely transformed my damaged hair. The ingredients are so pure and the results speak for themselves. Absolutely recommend!',
+      text: 'Finally a natural product that actually works for hair fall. I was skeptical at first, but the results speak for themselves!',
       beforeImage: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=200&h=200&fit=crop',
       afterImage: 'https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=200&h=200&fit=crop'
     },
@@ -434,7 +434,7 @@ export class TestimonialsSectionComponent implements AfterViewInit, OnDestroy {
       location: 'London, UK',
       avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop',
       rating: 5,
-      text: 'The Ayurvedic formula is gentle yet effective. My scalp feels healthier, and I have noticed significant new hair growth. It is now a permanent part of my routine.',
+      text: 'I love how light and nourishing it feels - no chemicals, just results. My scalp has never been healthier!',
       beforeImage: 'https://images.unsplash.com/photo-1516914589923-f105f1535f88?w=200&h=200&fit=crop',
       afterImage: 'https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=200&h=200&fit=crop'
     }
