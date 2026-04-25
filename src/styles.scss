@@ -139,6 +139,17 @@ body {
     }
   }
   
+  &-outline-light {
+    background-color: transparent;
+    color: var(--color-cream);
+    border: 1px solid var(--color-cream);
+    
+    &:hover {
+      background-color: var(--color-cream);
+      color: var(--color-primary);
+    }
+  }
+  
   &-accent {
     background-color: var(--color-accent);
     color: var(--color-primary-dark);

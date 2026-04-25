@@ -18,7 +18,7 @@ import { CommonModule } from '@angular/common';
             />
             <path d="M20 10V30" stroke="currentColor" stroke-width="1"/>
           </svg>
-          <span class="logo-text">Herbalia</span>
+          <span class="logo-text">Smitha Pure Life</span>
         </a>
         
         <div class="nav-links" [class.open]="menuOpen()">

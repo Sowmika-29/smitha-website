@@ -35,7 +35,7 @@ import { CommonModule } from '@angular/common';
             />
           </svg>
         </div>
-        <div class="brand-name">Herbalia</div>
+        <div class="brand-name">Smitha Pure Life</div>
         <div class="loading-bar">
           <div class="loading-progress" [style.width.%]="progress()"></div>
         </div>

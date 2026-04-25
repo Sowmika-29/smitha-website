@@ -20,27 +20,23 @@ gsap.registerPlugin(ScrollTrigger);
       
       <div class="container">
         <div class="cta-content" #ctaContent>
-          <span class="section-tag">Limited Time Offer</span>
-          <h2 class="heading-display heading-lg">Start Your Hair Transformation Today</h2>
+          <span class="section-tag">Transform Your Hair</span>
+          <h2 class="heading-display heading-lg">Your Hair Deserves Better</h2>
           <p class="body-lg">
-            Join the Herbalia family and experience the power of nature. 
-            Get 20% off your first order with code NATURAL20.
+            Switch to natural care and experience the difference from the first wash. 
+            Pure ingredients, powerful results.
           </p>
           
           <div class="cta-actions">
             <button class="btn btn-accent btn-large">
-              Shop Now — 20% Off
+              Buy Now
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
             </button>
-            <span class="offer-timer">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 6v6l4 2"/>
-              </svg>
-              Offer ends in 24 hours
-            </span>
+            <button class="btn btn-outline-light btn-large">
+              Learn More
+            </button>
           </div>
           
           <div class="guarantee">
@@ -74,11 +70,11 @@ gsap.registerPlugin(ScrollTrigger);
             <div class="product-badge">Best Seller</div>
             <img 
               src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=400&h=500&fit=crop" 
-              alt="Herbalia Premium Herbal Hair Powder"
+              alt="Smitha Pure Life Avosilk Bloom Conditioner"
               class="product-image"
             />
             <div class="product-info">
-              <h3>Premium Herbal Hair Powder</h3>
+              <h3>Avosilk Bloom Conditioner</h3>
               <div class="product-rating">
                 @for (star of [1,2,3,4,5]; track star) {
                   <svg width="14" height="14" viewBox="0 0 24 24">
