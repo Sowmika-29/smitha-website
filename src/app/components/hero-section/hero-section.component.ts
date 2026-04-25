@@ -138,7 +138,7 @@ import { gsap } from 'gsap';
       right: -20%;
       width: 800px;
       height: 800px;
-      background: radial-gradient(circle, rgba(196, 163, 90, 0.15) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(var(--color-accent-rgb), 0.15) 0%, transparent 70%);
       border-radius: 50%;
       filter: blur(60px);
     }
@@ -170,7 +170,7 @@ import { gsap } from 'gsap';
       color: var(--color-accent);
       margin-bottom: 1.5rem;
       padding: 0.5rem 1rem;
-      background: rgba(196, 163, 90, 0.1);
+      background: rgba(var(--color-accent-rgb), 0.1);
       border-radius: 2rem;
     }
     
@@ -237,7 +237,7 @@ import { gsap } from 'gsap';
       position: absolute;
       width: 400px;
       height: 400px;
-      background: radial-gradient(circle, rgba(196, 163, 90, 0.3) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(var(--color-accent-rgb), 0.3) 0%, transparent 70%);
       border-radius: 50%;
       filter: blur(40px);
       animation: pulse 4s ease-in-out infinite;

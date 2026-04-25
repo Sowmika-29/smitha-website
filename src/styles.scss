@@ -1,14 +1,18 @@
 // Premium Design System Variables
 :root {
-  // Primary - Deep Forest Green
+  // Primary - Deep Forest Green (for text and deep accents)
   --color-primary: #1a3a2f;
   --color-primary-light: #2d5a4a;
   --color-primary-dark: #0f2620;
   
-  // Accent - Warm Gold
-  --color-accent: #c4a35a;
-  --color-accent-light: #d4b87a;
-  --color-accent-dark: #a68940;
+  // Accent - Olivine Green (The main theme color)
+  --color-accent: #9ab973;
+  --color-accent-light: #adc78d;
+  --color-accent-dark: #7e9c5a;
+  
+  // RGB values for opacity adjustments
+  --color-primary-rgb: 26, 58, 47;
+  --color-accent-rgb: 154, 185, 115;
   
   // Neutrals
   --color-cream: #f8f5f0;

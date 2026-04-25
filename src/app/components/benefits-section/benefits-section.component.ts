@@ -158,7 +158,7 @@ interface Benefit {
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(196, 163, 90, 0.15);
+      background: rgba(var(--color-accent-rgb), 0.15);
       border-radius: 12px;
       color: var(--color-accent-dark);
       
@@ -234,7 +234,7 @@ interface Benefit {
       padding: 1rem 2rem;
       border-radius: 12px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(196, 163, 90, 0.4);
+      box-shadow: 0 10px 30px rgba(var(--color-accent-rgb), 0.4);
     }
     
     .stat-number {
