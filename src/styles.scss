@@ -1,0 +1,169 @@
+// Premium Design System Variables
+:root {
+  // Primary - Deep Forest Green
+  --color-primary: #1a3a2f;
+  --color-primary-light: #2d5a4a;
+  --color-primary-dark: #0f2620;
+  
+  // Accent - Warm Gold
+  --color-accent: #c4a35a;
+  --color-accent-light: #d4b87a;
+  --color-accent-dark: #a68940;
+  
+  // Neutrals
+  --color-cream: #f8f5f0;
+  --color-cream-dark: #ebe5db;
+  --color-charcoal: #2a2a2a;
+  --color-charcoal-light: #4a4a4a;
+  
+  // Typography
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'Inter', sans-serif;
+  
+  // Spacing
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+  
+  // Transitions
+  --transition-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --transition-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-cream);
+  color: var(--color-charcoal);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Scrollbar Styling
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+// Typography Utilities
+.heading-display {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.heading-xl {
+  font-size: clamp(3rem, 8vw, 6rem);
+}
+
+.heading-lg {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+.heading-md {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.body-lg {
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.body-sm {
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+}
+
+// Button Styles
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s var(--transition-smooth);
+  
+  &-primary {
+    background-color: var(--color-primary);
+    color: var(--color-cream);
+    
+    &:hover {
+      background-color: var(--color-primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(26, 58, 47, 0.3);
+    }
+  }
+  
+  &-outline {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    
+    &:hover {
+      background-color: var(--color-primary);
+      color: var(--color-cream);
+    }
+  }
+  
+  &-accent {
+    background-color: var(--color-accent);
+    color: var(--color-primary-dark);
+    
+    &:hover {
+      background-color: var(--color-accent-light);
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// Container
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+  
+  @media (max-width: 768px) {
+    padding: 0 var(--space-sm);
+  }
+}
+
+// Selection
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-primary-dark);
+}
