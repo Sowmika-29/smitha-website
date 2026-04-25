@@ -4,7 +4,7 @@ import {
   __spreadValues
 } from "./chunk-WDMUDEB6.js";
 
-// node_modules/.pnpm/three@0.170.0/node_modules/three/build/three.module.js
+// node_modules/three/build/three.module.js
 var REVISION = "170";
 var MOUSE = {
   LEFT: 0,

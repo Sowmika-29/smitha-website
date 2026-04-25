@@ -183,7 +183,7 @@ gsap.registerPlugin(ScrollTrigger);
       color: var(--color-accent);
       margin-bottom: 1rem;
       padding: 0.5rem 1rem;
-      background: rgba(196, 163, 90, 0.15);
+      background: rgba(var(--color-accent-rgb), 0.15);
       border-radius: 2rem;
     }
     
@@ -328,7 +328,7 @@ export class Product3dShowcaseComponent implements OnInit, AfterViewInit, OnDest
     directionalLight1.position.set(5, 5, 5);
     this.scene.add(directionalLight1);
 
-    const directionalLight2 = new THREE.DirectionalLight(0xc4a35a, 0.4);
+    const directionalLight2 = new THREE.DirectionalLight(0x9ab973, 0.4);
     directionalLight2.position.set(-5, 3, -5);
     this.scene.add(directionalLight2);
 
@@ -365,7 +365,7 @@ export class Product3dShowcaseComponent implements OnInit, AfterViewInit, OnDest
     // Lid (bamboo-like)
     const lidGeometry = new THREE.CylinderGeometry(0.85, 0.85, 0.3, 32);
     const lidMaterial = new THREE.MeshStandardMaterial({
-      color: 0xc4a35a, // Golden bamboo
+      color: 0x9ab973, // Olivine Green
       roughness: 0.7,
       metalness: 0.1,
     });
@@ -382,7 +382,7 @@ export class Product3dShowcaseComponent implements OnInit, AfterViewInit, OnDest
     // Label band
     const labelGeometry = new THREE.CylinderGeometry(0.81, 0.76, 0.8, 32, 1, true);
     const labelMaterial = new THREE.MeshStandardMaterial({
-      color: 0x1a3a2f, // Deep green
+      color: 0x1a3a2f, // Keeping deep green for label contrast
       roughness: 0.4,
       metalness: 0.2,
       side: THREE.DoubleSide,
@@ -413,7 +413,7 @@ export class Product3dShowcaseComponent implements OnInit, AfterViewInit, OnDest
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     
     const material = new THREE.PointsMaterial({
-      color: 0xc4a35a,
+      color: 0x9ab973,
       size: 0.03,
       transparent: true,
       opacity: 0.6,
