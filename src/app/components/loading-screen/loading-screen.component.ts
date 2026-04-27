@@ -13,27 +13,7 @@ import { CommonModule } from '@angular/common';
     >
       <div class="loading-content">
         <div class="logo-container">
-          <svg class="leaf-icon" viewBox="0 0 60 60" fill="none">
-            <path 
-              d="M30 5C30 5 15 15 15 30C15 45 30 55 30 55C30 55 45 45 45 30C45 15 30 5 30 5Z" 
-              stroke="currentColor" 
-              stroke-width="2"
-              fill="none"
-              class="leaf-path"
-            />
-            <path 
-              d="M30 15V45" 
-              stroke="currentColor" 
-              stroke-width="1.5"
-              class="stem-path"
-            />
-            <path 
-              d="M30 25L22 20M30 35L38 30M30 30L24 35" 
-              stroke="currentColor" 
-              stroke-width="1"
-              class="vein-paths"
-            />
-          </svg>
+          <img src="assets/images/logo.png" alt="Smitha Pure Life" class="loading-logo" />
         </div>
         <div class="brand-name">Smitha Pure Life</div>
         <div class="loading-bar">
@@ -70,43 +50,21 @@ import { CommonModule } from '@angular/common';
     }
     
     .logo-container {
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
     
-    .leaf-icon {
-      width: 80px;
-      height: 80px;
-      color: var(--color-accent);
+    .loading-logo {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      border: none;
+      outline: none;
+      animation: logoPulse 2s ease-in-out infinite;
     }
     
-    .leaf-path {
-      stroke-dasharray: 150;
-      stroke-dashoffset: 150;
-      animation: drawLeaf 2s ease forwards;
-    }
-    
-    .stem-path {
-      stroke-dasharray: 30;
-      stroke-dashoffset: 30;
-      animation: drawStem 1s ease 0.5s forwards;
-    }
-    
-    .vein-paths {
-      stroke-dasharray: 50;
-      stroke-dashoffset: 50;
-      animation: drawVeins 1s ease 1s forwards;
-    }
-    
-    @keyframes drawLeaf {
-      to { stroke-dashoffset: 0; }
-    }
-    
-    @keyframes drawStem {
-      to { stroke-dashoffset: 0; }
-    }
-    
-    @keyframes drawVeins {
-      to { stroke-dashoffset: 0; }
+    @keyframes logoPulse {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.05); opacity: 1; }
     }
     
     .brand-name {

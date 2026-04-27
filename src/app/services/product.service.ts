@@ -23,7 +23,7 @@ export class ProductService {
       description: 'Restores natural strength and shine with the power of avocado and traditional herbs.',
       price: 49.99,
       salePrice: 39.99,
-      image: 'assets/images/avosilk-conditioner.jpeg',
+      image: 'assets/images/conditioner-bottle.png',
       benefits: ['Restores Shine', 'Strengthens Roots', 'Deep Hydration']
     },
     {

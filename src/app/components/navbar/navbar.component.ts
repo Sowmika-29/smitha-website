@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
     <nav class="navbar" [class.scrolled]="isScrolled()" [class.hidden]="isHidden()">
       <div class="navbar-container">
         <a href="#" class="logo">
-          <img src="assets/images/smitha-logo.jpeg" alt="Smitha Pure Life" class="logo-image" />
+          <img src="assets/images/logo.png" alt="Smitha Pure Life" class="logo-image" />
           <span class="logo-text">Smitha Pure Life</span>
         </a>
         
@@ -67,12 +67,16 @@ import { CommonModule } from '@angular/common';
       gap: 0.75rem;
       text-decoration: none;
       color: var(--color-primary);
+      border: none;
+      outline: none;
     }
     
     .logo-image {
-      height: 40px;
+      height: 50px;
       width: auto;
       object-fit: contain;
+      border: none;
+      outline: none;
     }
     
     .logo-text {

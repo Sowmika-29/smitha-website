@@ -94,12 +94,14 @@ import { ProductService } from '../../services/product.service';
       align-items: center;
       overflow: hidden;
       padding-top: 100px;
+      perspective: 1000px;
     }
     
     .hero-background {
       position: absolute;
       inset: 0;
       pointer-events: none;
+      transform-style: preserve-3d;
     }
     
     .floating-leaf {
@@ -109,6 +111,7 @@ import { ProductService } from '../../services/product.service';
       opacity: 0.1;
       background: var(--color-primary);
       clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      transform: translateZ(20px);
       
       &.leaf-1 {
         top: 20%;
@@ -142,11 +145,12 @@ import { ProductService } from '../../services/product.service';
       background: radial-gradient(circle, rgba(var(--color-accent-rgb), 0.15) 0%, transparent 70%);
       border-radius: 50%;
       filter: blur(60px);
+      transform: translateZ(-50px);
     }
     
     @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(5deg); }
+      0%, 100% { transform: translateY(0) rotate(0deg) translateZ(20px); }
+      50% { transform: translateY(-20px) rotate(5deg) translateZ(40px); }
     }
     
     .hero-content {
@@ -156,10 +160,12 @@ import { ProductService } from '../../services/product.service';
       align-items: center;
       position: relative;
       z-index: 1;
+      transform-style: preserve-3d;
     }
     
     .hero-text {
       max-width: 600px;
+      transform: translateZ(50px);
     }
     
     .tagline {
@@ -232,6 +238,8 @@ import { ProductService } from '../../services/product.service';
       display: flex;
       justify-content: center;
       align-items: center;
+      transform-style: preserve-3d;
+      transform: translateZ(100px);
     }
     
     .product-glow {
@@ -447,7 +455,55 @@ export class HeroSectionComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    setTimeout(() => this.initAnimations(), 1500);
+    setTimeout(() => {
+      this.initAnimations();
+      this.initTiltEffect();
+    }, 1500);
+  }
+
+  private initTiltEffect(): void {
+    const visual = this.heroVisual.nativeElement;
+    const container = this.heroSection.nativeElement;
+
+    container.addEventListener('mousemove', (e: MouseEvent) => {
+      const { clientX, clientY } = e;
+      const { left, top, width, height } = container.getBoundingClientRect();
+      
+      const x = (clientX - left) / width - 0.5;
+      const y = (clientY - top) / height - 0.5;
+
+      gsap.to(visual, {
+        rotationY: x * 20,
+        rotationX: -y * 20,
+        x: x * 30,
+        y: y * 30,
+        duration: 0.5,
+        ease: 'power2.out'
+      });
+
+      // Parallax for floating elements
+      const leaves = container.querySelectorAll('.floating-leaf');
+      leaves.forEach((leaf: any, i: number) => {
+        const factor = (i + 1) * 20;
+        gsap.to(leaf, {
+          x: x * factor,
+          y: y * factor,
+          duration: 1,
+          ease: 'power1.out'
+        });
+      });
+    });
+
+    container.addEventListener('mouseleave', () => {
+      gsap.to(visual, {
+        rotationY: 0,
+        rotationX: 0,
+        x: 0,
+        y: 0,
+        duration: 1,
+        ease: 'power2.out'
+      });
+    });
   }
 
   private initAnimations(): void {

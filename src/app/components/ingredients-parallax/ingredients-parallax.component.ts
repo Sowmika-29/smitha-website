@@ -65,13 +65,15 @@ interface Ingredient {
   styles: [`
     .ingredients {
       padding: var(--space-xl) 0;
-      background-color: var(--color-cream);
+      background-color: transparent;
       overflow: hidden;
+      perspective: 1500px;
     }
     
     .ingredients-header {
       text-align: center;
       margin-bottom: var(--space-lg);
+      transform: translateZ(50px);
     }
     
     .section-tag {
@@ -100,13 +102,16 @@ interface Ingredient {
       grid-template-columns: repeat(4, 1fr);
       gap: 0;
       margin-bottom: var(--space-lg);
+      transform-style: preserve-3d;
     }
     
     .ingredient-card {
       position: relative;
       aspect-ratio: 3/4;
-      overflow: hidden;
+      overflow: visible;
       cursor: pointer;
+      perspective: 1000px;
+      transform-style: preserve-3d;
       
       &:hover {
         .card-image {
@@ -118,7 +123,7 @@ interface Ingredient {
         }
         
         .card-content {
-          transform: translateY(0);
+          transform: translateY(0) translateZ(50px);
         }
         
         .card-description,
@@ -132,6 +137,9 @@ interface Ingredient {
     .card-image-wrapper {
       position: absolute;
       inset: 0;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
     }
     
     .card-image {
@@ -161,8 +169,10 @@ interface Ingredient {
       right: 0;
       padding: 2rem;
       color: var(--color-cream);
-      transform: translateY(40px);
+      transform: translateY(40px) translateZ(20px);
       transition: transform 0.4s var(--transition-smooth);
+      transform-style: preserve-3d;
+      pointer-events: none;
     }
     
     .card-title {
@@ -272,10 +282,56 @@ export class IngredientsParallaxComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     this.initAnimations();
+    this.initTiltEffect();
   }
 
   ngOnDestroy(): void {
     this.scrollTriggers.forEach(st => st.kill());
+  }
+
+  private initTiltEffect(): void {
+    this.ingredientCards.forEach(card => {
+      const element = card.nativeElement;
+      element.addEventListener('mousemove', (e: MouseEvent) => {
+        const { left, top, width, height } = element.getBoundingClientRect();
+        const x = (e.clientX - left) / width - 0.5;
+        const y = (e.clientY - top) / height - 0.5;
+
+        gsap.to(element.querySelector('.card-image-wrapper'), {
+          rotationY: x * 15,
+          rotationX: -y * 15,
+          scale: 1.05,
+          duration: 0.4,
+          ease: 'power2.out'
+        });
+
+        gsap.to(element.querySelector('.card-content'), {
+          x: x * 20,
+          y: y * 20,
+          z: 50,
+          duration: 0.4,
+          ease: 'power2.out'
+        });
+      });
+
+      element.addEventListener('mouseleave', () => {
+        gsap.to(element.querySelector('.card-image-wrapper'), {
+          rotationY: 0,
+          rotationX: 0,
+          scale: 1,
+          duration: 0.6,
+          ease: 'power2.out'
+        });
+
+        gsap.to(element.querySelector('.card-content'), {
+          x: 0,
+          y: 0,
+          z: 0,
+          duration: 0.6,
+          ease: 'power2.out'
+        });
+      });
+    });
   }
 
   private initAnimations(): void {

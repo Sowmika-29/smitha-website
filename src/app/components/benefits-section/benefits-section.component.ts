@@ -96,7 +96,8 @@ interface Benefit {
   styles: [`
     .benefits {
       padding: var(--space-xl) 0;
-      background: linear-gradient(180deg, var(--color-cream) 0%, var(--color-primary) 100%);
+      background: transparent;
+      perspective: 1200px;
     }
     
     .benefits-layout {
@@ -105,9 +106,12 @@ interface Benefit {
       gap: var(--space-lg);
       align-items: center;
       margin-bottom: var(--space-lg);
+      transform-style: preserve-3d;
     }
     
     .benefits-content {
+      transform-style: preserve-3d;
+      
       .section-tag {
         display: inline-block;
         font-size: 0.7rem;
@@ -134,6 +138,7 @@ interface Benefit {
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
+      transform-style: preserve-3d;
     }
     
     .benefit-item {
@@ -143,10 +148,10 @@ interface Benefit {
       background: white;
       border-radius: 12px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-      transition: all 0.3s ease;
+      transition: box-shadow 0.3s ease;
+      transform-style: preserve-3d;
       
       &:hover {
-        transform: translateX(10px);
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
       }
     }
@@ -161,6 +166,7 @@ interface Benefit {
       background: rgba(var(--color-accent-rgb), 0.15);
       border-radius: 12px;
       color: var(--color-accent-dark);
+      transform: translateZ(10px);
       
       :host ::ng-deep svg {
         width: 24px;
@@ -169,6 +175,8 @@ interface Benefit {
     }
     
     .benefit-text {
+      transform: translateZ(5px);
+      
       h4 {
         font-family: var(--font-heading);
         font-size: 1.125rem;
@@ -186,10 +194,13 @@ interface Benefit {
     
     .benefits-visual {
       position: relative;
+      transform-style: preserve-3d;
+      perspective: 1000px;
     }
     
     .visual-wrapper {
       position: relative;
+      transform-style: preserve-3d;
     }
     
     .before-after {
@@ -366,10 +377,54 @@ export class BenefitsSectionComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     this.initAnimations();
+    this.init3DEffects();
   }
 
   ngOnDestroy(): void {
     this.scrollTriggers.forEach(st => st.kill());
+  }
+
+  private init3DEffects(): void {
+    const items = this.benefitsSection.nativeElement.querySelectorAll('.benefit-item');
+    items.forEach((item: HTMLElement) => {
+      item.addEventListener('mousemove', (e: MouseEvent) => {
+        const { left, top, width, height } = item.getBoundingClientRect();
+        const x = (e.clientX - left) / width - 0.5;
+        const y = (e.clientY - top) / height - 0.5;
+
+        gsap.to(item, {
+          rotationY: x * 10,
+          rotationX: -y * 10,
+          z: 20,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      });
+
+      item.addEventListener('mouseleave', () => {
+        gsap.to(item, {
+          rotationY: 0,
+          rotationX: 0,
+          z: 0,
+          duration: 0.5,
+          ease: 'power2.out'
+        });
+      });
+    });
+
+    const visual = this.benefitsVisual.nativeElement.querySelector('.visual-wrapper');
+    this.benefitsSection.nativeElement.addEventListener('mousemove', (e: MouseEvent) => {
+      const { left, top, width, height } = this.benefitsSection.nativeElement.getBoundingClientRect();
+      const x = (e.clientX - left) / width - 0.5;
+      const y = (e.clientY - top) / height - 0.5;
+
+      gsap.to(visual, {
+        rotationY: x * 5,
+        rotationX: -y * 5,
+        duration: 0.5,
+        ease: 'power1.out'
+      });
+    });
   }
 
   private initAnimations(): void {

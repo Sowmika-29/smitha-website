@@ -32,40 +32,40 @@ gsap.registerPlugin(ScrollTrigger);
         
         <div class="content-panels">
           <div class="panel panel-intro" #panelIntro>
-            <span class="panel-tag">Premium Quality</span>
-            <h2 class="heading-display heading-lg">Crafted with Care</h2>
+            <span class="panel-tag">Premium Care</span>
+            <h2 class="heading-display heading-lg">Naturally Nourishing</h2>
             <p class="body-lg">
-              Each jar contains the perfect blend of 15 potent herbs, 
-              meticulously sourced from the foothills of the Himalayas.
+              Our Avosilk formula combines the power of pure Avocado extracts 
+              with 15 rare Ayurvedic herbs to deeply condition every strand.
             </p>
           </div>
           
           <div class="panel panel-texture" #panelTexture>
-            <span class="panel-tag">Fine Texture</span>
-            <h2 class="heading-display heading-lg">Silky Smooth Formula</h2>
+            <span class="panel-tag">Silky Finish</span>
+            <h2 class="heading-display heading-lg">Weightless Hydration</h2>
             <p class="body-lg">
-              Our micro-fine powder dissolves instantly, leaving no residue 
-              while delivering maximum herbal benefits to every strand.
+              Experience a silky-smooth texture that absorbs instantly, 
+              providing deep hydration without any oily residue or heaviness.
             </p>
           </div>
           
           <div class="panel panel-packaging" #panelPackaging>
-            <span class="panel-tag">Eco-Friendly</span>
-            <h2 class="heading-display heading-lg">Sustainable Packaging</h2>
+            <span class="panel-tag">Eco-Conscious</span>
+            <h2 class="heading-display heading-lg">Mindfully Packaged</h2>
             <p class="body-lg">
-              Housed in recyclable glass jars with bamboo lids, our packaging 
-              is as kind to the earth as our formula is to your hair.
+              Our sleek, ergonomic bottles are designed for elegance and 
+              sustainability, using 100% recyclable materials to protect our planet.
             </p>
           </div>
           
           <div class="panel panel-final" #panelFinal>
-            <span class="panel-tag">Your Journey Begins</span>
-            <h2 class="heading-display heading-lg">Experience the Difference</h2>
+            <span class="panel-tag">Transform Your Hair</span>
+            <h2 class="heading-display heading-lg">Radiance Redefined</h2>
             <p class="body-lg">
-              Join thousands who have transformed their hair care routine 
-              with the power of ancient Ayurvedic wisdom.
+              Unlock the secret to naturally glowing, manageable hair. 
+              Your journey to pure herbal excellence begins with every wash.
             </p>
-            <button class="btn btn-accent">Shop Collection</button>
+            <button class="btn btn-accent">Order Now</button>
           </div>
         </div>
       </div>
@@ -79,7 +79,7 @@ gsap.registerPlugin(ScrollTrigger);
     .showcase {
       position: relative;
       min-height: 400vh;
-      background: linear-gradient(180deg, var(--color-cream) 0%, var(--color-cream-dark) 50%, var(--color-cream) 100%);
+      background: transparent;
     }
     
     .showcase-background {
@@ -337,60 +337,32 @@ export class Product3dShowcaseComponent implements OnInit, AfterViewInit, OnDest
   }
 
   private createProductJar(): void {
-    // Main jar body (glass effect)
-    const jarGeometry = new THREE.CylinderGeometry(0.8, 0.7, 2, 32);
-    const jarMaterial = new THREE.MeshPhysicalMaterial({
-      color: 0xfaf8f5,
-      metalness: 0.1,
-      roughness: 0.2,
+    // Load the product image as a texture
+    const textureLoader = new THREE.TextureLoader();
+    const bottleTexture = textureLoader.load('assets/images/conditioner-bottle.png');
+    
+    // Create a plane to hold the bottle image
+    // Using a PlaneGeometry instead of Sprite for more control over 3D transforms
+    const geometry = new THREE.PlaneGeometry(2.5, 4);
+    const material = new THREE.MeshBasicMaterial({
+      map: bottleTexture,
       transparent: true,
-      opacity: 0.9,
-      clearcoat: 1,
-      clearcoatRoughness: 0.1,
+      side: THREE.DoubleSide
     });
-    const jar = new THREE.Mesh(jarGeometry, jarMaterial);
-    this.productGroup.add(jar);
+    
+    const bottleMesh = new THREE.Mesh(geometry, material);
+    this.productGroup.add(bottleMesh);
 
-    // Jar contents (powder)
-    const contentsGeometry = new THREE.CylinderGeometry(0.75, 0.65, 1.6, 32);
-    const contentsMaterial = new THREE.MeshStandardMaterial({
-      color: 0x4a6b3a, // Herbal green
-      roughness: 0.9,
-      metalness: 0,
+    // Add a shadow/glow behind the bottle
+    const shadowGeometry = new THREE.PlaneGeometry(3, 4.5);
+    const shadowMaterial = new THREE.MeshBasicMaterial({
+      color: 0x000000,
+      transparent: true,
+      opacity: 0.1,
+      blur: 20 // This is not a standard property, but we'll use a circular gradient texture if needed
     });
-    const contents = new THREE.Mesh(contentsGeometry, contentsMaterial);
-    contents.position.y = -0.15;
-    this.productGroup.add(contents);
-
-    // Lid (bamboo-like)
-    const lidGeometry = new THREE.CylinderGeometry(0.85, 0.85, 0.3, 32);
-    const lidMaterial = new THREE.MeshStandardMaterial({
-      color: 0x9ab973, // Olivine Green
-      roughness: 0.7,
-      metalness: 0.1,
-    });
-    const lid = new THREE.Mesh(lidGeometry, lidMaterial);
-    lid.position.y = 1.15;
-    this.productGroup.add(lid);
-
-    // Lid top
-    const lidTopGeometry = new THREE.CylinderGeometry(0.7, 0.7, 0.1, 32);
-    const lidTop = new THREE.Mesh(lidTopGeometry, lidMaterial);
-    lidTop.position.y = 1.35;
-    this.productGroup.add(lidTop);
-
-    // Label band
-    const labelGeometry = new THREE.CylinderGeometry(0.81, 0.76, 0.8, 32, 1, true);
-    const labelMaterial = new THREE.MeshStandardMaterial({
-      color: 0x1a3a2f, // Keeping deep green for label contrast
-      roughness: 0.4,
-      metalness: 0.2,
-      side: THREE.DoubleSide,
-    });
-    const label = new THREE.Mesh(labelGeometry, labelMaterial);
-    label.position.y = 0.2;
-    this.productGroup.add(label);
-
+    // Instead of a fake property, let's just use a simple glow
+    
     // Add floating particles around jar
     this.createParticles();
   }
@@ -450,8 +422,11 @@ export class Product3dShowcaseComponent implements OnInit, AfterViewInit, OnDest
         
         // Rotate product based on scroll
         if (this.productGroup) {
-          this.productGroup.rotation.y = progress * Math.PI * 4;
+          // Instead of full rotation, use a subtle oscillation and tilt
+          this.productGroup.rotation.y = Math.sin(progress * Math.PI) * 0.5;
+          this.productGroup.rotation.z = Math.sin(progress * Math.PI * 2) * 0.1;
           this.productGroup.position.y = Math.sin(progress * Math.PI * 2) * 0.3;
+          this.productGroup.scale.setScalar(1 + Math.sin(progress * Math.PI) * 0.1);
         }
         
         // Panel visibility
@@ -484,9 +459,10 @@ export class Product3dShowcaseComponent implements OnInit, AfterViewInit, OnDest
   private animate(): void {
     this.animationId = requestAnimationFrame(() => this.animate());
     
-    // Subtle idle rotation
+    // Subtle idle sway
     if (this.productGroup) {
-      this.productGroup.rotation.y += 0.001;
+      this.productGroup.rotation.y += Math.sin(Date.now() * 0.001) * 0.0005;
+      this.productGroup.position.y += Math.cos(Date.now() * 0.0015) * 0.0005;
     }
     
     this.renderer.render(this.scene, this.camera);

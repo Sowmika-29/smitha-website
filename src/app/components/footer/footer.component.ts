@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
         <div class="footer-main">
           <div class="footer-brand">
             <a href="#" class="logo">
-              <img src="assets/images/smitha-logo.jpeg" alt="Smitha Pure Life" class="logo-image" />
+              <img src="assets/images/logo.png" alt="Smitha Pure Life" class="logo-image" />
               <span class="logo-text">Smitha Pure Life</span>
             </a>
             <p class="brand-description">
@@ -133,12 +133,16 @@ import { CommonModule } from '@angular/common';
         text-decoration: none;
         color: var(--color-cream);
         margin-bottom: 1rem;
+        border: none;
+        outline: none;
       }
       
       .logo-image {
         height: 40px;
         width: auto;
         object-fit: contain;
+        border: none;
+        outline: none;
       }
       
       .logo-text {
