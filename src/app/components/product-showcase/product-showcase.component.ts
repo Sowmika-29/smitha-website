@@ -89,7 +89,7 @@ gsap.registerPlugin(ScrollTrigger);
     
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
     }
     
@@ -218,6 +218,12 @@ gsap.registerPlugin(ScrollTrigger);
       color: var(--color-charcoal);
       border-radius: 2rem;
       border: 1px solid rgba(26, 58, 47, 0.1);
+    }
+    
+    @media (max-width: 1024px) {
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
     
     @media (max-width: 768px) {
