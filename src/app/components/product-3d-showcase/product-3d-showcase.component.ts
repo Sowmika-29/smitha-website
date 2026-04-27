@@ -262,17 +262,45 @@ export class Product3dShowcaseComponent implements OnInit, AfterViewInit, OnDest
   private productGroup!: THREE.Group;
   private animationId!: number;
   private scrollTrigger!: ScrollTrigger;
+  
+  // Frame Sequence Assets
+  private totalFrames = 67;
+  private textures: THREE.Texture[] = [];
+  private currentFrame = 0;
+  private bottleMesh!: THREE.Mesh;
 
   constructor(private ngZone: NgZone) {}
 
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    this.ngZone.runOutsideAngular(() => {
-      this.initThree();
-      this.initScrollAnimations();
-      this.animate();
+    this.preloadFrames().then(() => {
+      this.ngZone.runOutsideAngular(() => {
+        this.initThree();
+        this.initScrollAnimations();
+        this.animate();
+      });
     });
+  }
+
+  private async preloadFrames(): Promise<void> {
+    const loader = new THREE.TextureLoader();
+    const loadPromises = [];
+
+    for (let i = 1; i <= this.totalFrames; i++) {
+      const frameNum = i.toString().padStart(3, '0');
+      const url = `assets/images/3d-frames/ezgif-frame-${frameNum}.jpg`;
+      loadPromises.push(
+        new Promise<THREE.Texture>((resolve) => {
+          loader.load(url, (texture) => {
+            texture.colorSpace = THREE.SRGBColorSpace;
+            resolve(texture);
+          });
+        })
+      );
+    }
+
+    this.textures = await Promise.all(loadPromises);
   }
 
   ngOnDestroy(): void {
@@ -285,6 +313,7 @@ export class Product3dShowcaseComponent implements OnInit, AfterViewInit, OnDest
     if (this.renderer) {
       this.renderer.dispose();
     }
+    this.textures.forEach(t => t.dispose());
     ScrollTrigger.getAll().forEach(st => st.kill());
   }
 
@@ -292,10 +321,8 @@ export class Product3dShowcaseComponent implements OnInit, AfterViewInit, OnDest
     const canvas = this.threeCanvas.nativeElement;
     const wrapper = this.canvasWrapper.nativeElement;
 
-    // Scene setup
     this.scene = new THREE.Scene();
     
-    // Camera
     this.camera = new THREE.PerspectiveCamera(
       45,
       wrapper.clientWidth / wrapper.clientHeight,
@@ -304,7 +331,6 @@ export class Product3dShowcaseComponent implements OnInit, AfterViewInit, OnDest
     );
     this.camera.position.z = 5;
 
-    // Renderer
     this.renderer = new THREE.WebGLRenderer({
       canvas,
       alpha: true,
@@ -312,63 +338,68 @@ export class Product3dShowcaseComponent implements OnInit, AfterViewInit, OnDest
     });
     this.renderer.setSize(wrapper.clientWidth, wrapper.clientHeight);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    this.renderer.localClippingEnabled = true; // Enable clipping
 
-    // Product group
     this.productGroup = new THREE.Group();
     this.scene.add(this.productGroup);
 
-    // Create jar geometry (cylindrical jar with lid)
     this.createProductJar();
 
-    // Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    // Lighting (Subtle, as images are pre-lit)
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1);
     this.scene.add(ambientLight);
 
-    const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.8);
-    directionalLight1.position.set(5, 5, 5);
-    this.scene.add(directionalLight1);
-
-    const directionalLight2 = new THREE.DirectionalLight(0x9ab973, 0.4);
-    directionalLight2.position.set(-5, 3, -5);
-    this.scene.add(directionalLight2);
-
-    // Handle resize
     window.addEventListener('resize', () => this.onResize());
   }
 
   private createProductJar(): void {
-    // Load the product image as a texture
-    const textureLoader = new THREE.TextureLoader();
-    const bottleTexture = textureLoader.load('assets/images/conditioner-bottle.png');
+    const geometry = new THREE.PlaneGeometry(3.2, 3.2);
     
-    // Create a plane to hold the bottle image
-    // Using a PlaneGeometry instead of Sprite for more control over 3D transforms
-    const geometry = new THREE.PlaneGeometry(2.5, 4);
+    // Clipping plane to remove bottom watermark (Veo)
+    const clipPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 1.4); 
+
     const material = new THREE.MeshBasicMaterial({
-      map: bottleTexture,
+      map: this.textures[0],
       transparent: true,
-      side: THREE.DoubleSide
+      side: THREE.DoubleSide,
+      clippingPlanes: [clipPlane]
     });
     
-    const bottleMesh = new THREE.Mesh(geometry, material);
-    this.productGroup.add(bottleMesh);
+    this.bottleMesh = new THREE.Mesh(geometry, material);
+    this.bottleMesh.name = 'bottle';
+    this.productGroup.add(this.bottleMesh);
 
-    // Add floating particles around jar
+    // Shadow
+    const shadowGeo = new THREE.CircleGeometry(0.8, 32);
+    const shadowMat = new THREE.MeshBasicMaterial({
+      color: 0x000000,
+      transparent: true,
+      opacity: 0.15,
+      side: THREE.DoubleSide
+    });
+    const shadowMesh = new THREE.Mesh(shadowGeo, shadowMat);
+    shadowMesh.name = 'shadow';
+    shadowMesh.rotation.x = Math.PI / 2;
+    shadowMesh.position.y = -1.6;
+    shadowMesh.position.z = -0.2;
+    shadowMesh.scale.y = 0.3;
+    this.productGroup.add(shadowMesh);
+
     this.createParticles();
   }
 
   private createParticles(): void {
-    const particleCount = 50;
+    const particleCount = 40;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     
     for (let i = 0; i < particleCount * 3; i += 3) {
-      const radius = 2 + Math.random() * 1;
+      const radius = 2 + Math.random() * 1.5;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.random() * Math.PI;
       
       positions[i] = radius * Math.sin(phi) * Math.cos(theta);
-      positions[i + 1] = (Math.random() - 0.5) * 3;
+      positions[i + 1] = (Math.random() - 0.5) * 4;
       positions[i + 2] = radius * Math.sin(phi) * Math.sin(theta);
     }
     
@@ -376,9 +407,9 @@ export class Product3dShowcaseComponent implements OnInit, AfterViewInit, OnDest
     
     const material = new THREE.PointsMaterial({
       color: 0x9ab973,
-      size: 0.03,
+      size: 0.04,
       transparent: true,
-      opacity: 0.6,
+      opacity: 0.4,
     });
     
     const particles = new THREE.Points(geometry, material);
@@ -395,7 +426,6 @@ export class Product3dShowcaseComponent implements OnInit, AfterViewInit, OnDest
     ];
     const progressFill = this.progressBar.nativeElement.querySelector('.progress-fill');
 
-    // Set initial states
     gsap.set(panels, { opacity: 0, y: 50 });
     gsap.set(panels[0], { opacity: 1, y: 0 });
 
@@ -403,23 +433,34 @@ export class Product3dShowcaseComponent implements OnInit, AfterViewInit, OnDest
       trigger: section,
       start: 'top top',
       end: 'bottom bottom',
-      scrub: 1,
+      scrub: 0.5, // Smoother frame transitions
       onUpdate: (self) => {
         const progress = self.progress;
         
-        // Update progress bar
-        gsap.to(progressFill, { height: `${progress * 100}%`, duration: 0.1 });
+        // 1. Update Frame Sequence
+        const frameIndex = Math.min(
+          this.totalFrames - 1,
+          Math.floor(progress * this.totalFrames)
+        );
         
-        // Rotate product based on scroll
+        if (this.bottleMesh && this.textures[frameIndex]) {
+          (this.bottleMesh.material as THREE.MeshBasicMaterial).map = this.textures[frameIndex];
+        }
+
+        // 2. Subtle Float & Scale
         if (this.productGroup) {
-          // Instead of full rotation, use a subtle oscillation and tilt
-          this.productGroup.rotation.y = Math.sin(progress * Math.PI) * 0.5;
-          this.productGroup.rotation.z = Math.sin(progress * Math.PI * 2) * 0.1;
-          this.productGroup.position.y = Math.sin(progress * Math.PI * 2) * 0.3;
-          this.productGroup.scale.setScalar(1 + Math.sin(progress * Math.PI) * 0.1);
+          this.productGroup.position.y = Math.sin(progress * Math.PI * 2) * 0.1;
+          this.productGroup.scale.setScalar(1 + Math.sin(progress * Math.PI) * 0.03);
+
+          const shadow = this.productGroup.getObjectByName('shadow') as THREE.Mesh;
+          if (shadow) {
+            (shadow.material as THREE.MeshBasicMaterial).opacity = 0.15 + (Math.sin(progress * Math.PI) * 0.05);
+          }
         }
         
-        // Panel visibility
+        // 3. UI and Progress
+        gsap.to(progressFill, { height: `${progress * 100}%`, duration: 0.1 });
+        
         const panelIndex = Math.floor(progress * 4);
         panels.forEach((panel, i) => {
           if (i === panelIndex) {
@@ -429,7 +470,6 @@ export class Product3dShowcaseComponent implements OnInit, AfterViewInit, OnDest
           }
         });
         
-        // Hide rotation hint after initial scroll
         if (progress > 0.05) {
           gsap.to(this.rotationHint.nativeElement, { opacity: 0, duration: 0.3 });
         } else {
@@ -449,10 +489,8 @@ export class Product3dShowcaseComponent implements OnInit, AfterViewInit, OnDest
   private animate(): void {
     this.animationId = requestAnimationFrame(() => this.animate());
     
-    // Subtle idle sway
     if (this.productGroup) {
-      this.productGroup.rotation.y += Math.sin(Date.now() * 0.001) * 0.0005;
-      this.productGroup.position.y += Math.cos(Date.now() * 0.0015) * 0.0005;
+      this.productGroup.position.y += Math.cos(Date.now() * 0.001) * 0.0003;
     }
     
     this.renderer.render(this.scene, this.camera);

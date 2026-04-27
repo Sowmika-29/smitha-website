@@ -21,8 +21,8 @@
   --color-charcoal-light: #4a4a4a;
   
   // Typography
-  --font-heading: 'Cormorant Garamond', serif;
-  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Outfit', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
   
   // Spacing
   --space-xs: 0.5rem;
@@ -59,6 +59,33 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  // 3D Perception System
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+// Depth Layer Tokens
+:root {
+  --depth-bg: translateZ(-100px) scale(1.5);
+  --depth-mid: translateZ(0);
+  --depth-fg: translateZ(100px);
+  --depth-focus: translateZ(150px);
+}
+
+// Global 3D Utilities
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.layer-bg { transform: var(--depth-bg); }
+.layer-mid { transform: var(--depth-mid); }
+.layer-fg { transform: var(--depth-fg); }
+
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 // Scrollbar Styling
@@ -76,6 +103,13 @@ body {
 }
 
 // Typography Utilities
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
 .heading-display {
   font-family: var(--font-heading);
   font-weight: 600;
@@ -120,6 +154,12 @@ body {
   border: none;
   cursor: pointer;
   transition: all 0.4s var(--transition-smooth);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  
+  &:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  }
   
   &-primary {
     background-color: var(--color-primary);
@@ -127,8 +167,7 @@ body {
     
     &:hover {
       background-color: var(--color-primary-light);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(26, 58, 47, 0.3);
+      box-shadow: 0 15px 40px rgba(26, 58, 47, 0.3);
     }
   }
   
@@ -160,7 +199,6 @@ body {
     
     &:hover {
       background-color: var(--color-accent-light);
-      transform: translateY(-2px);
     }
   }
 }
@@ -181,4 +219,44 @@ body {
 ::selection {
   background-color: var(--color-accent);
   color: var(--color-primary-dark);
+}
+
+// Decorative System
+.glass-blob {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.2;
+  z-index: -1;
+  pointer-events: none;
+  
+  &.blob-accent { background: var(--color-accent); }
+  &.blob-primary { background: var(--color-primary); }
+}
+
+.floating-leaf {
+  position: absolute;
+  color: var(--color-accent);
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: -1;
+  animation: leafFloat 20s ease-in-out infinite;
+}
+
+@keyframes leafFloat {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(20px, -30px) rotate(15deg); }
+  50% { transform: translate(-10px, -60px) rotate(-10deg); }
+  75% { transform: translate(-30px, -30px) rotate(5deg); }
+}
+
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  background: url('https://grainy-gradients.vercel.app/noise.svg');
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 9999;
 }

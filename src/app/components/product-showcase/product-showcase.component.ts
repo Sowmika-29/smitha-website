@@ -56,7 +56,7 @@ gsap.registerPlugin(ScrollTrigger);
   `,
   styles: [`
     .product-showcase {
-      padding: var(--space-xl) 0;
+      padding: var(--space-lg) 0;
       background-color: var(--color-cream-dark);
       overflow: hidden;
     }

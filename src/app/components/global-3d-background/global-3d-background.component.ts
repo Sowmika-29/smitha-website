@@ -22,12 +22,22 @@ import { gsap } from 'gsap';
       z-index: -1;
       pointer-events: none;
       background: var(--color-cream);
+      
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');
+        opacity: 0.1;
+        pointer-events: none;
+      }
     }
     
     canvas {
       width: 100%;
       height: 100%;
       display: block;
+      filter: blur(3px); // Subtle depth blur
     }
   `]
 })

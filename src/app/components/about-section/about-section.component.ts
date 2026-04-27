@@ -12,6 +12,16 @@ gsap.registerPlugin(ScrollTrigger);
   imports: [CommonModule],
   template: `
     <section class="about" id="about" #aboutSection>
+      <div class="glass-blob blob-accent" style="top: 10%; left: -100px;"></div>
+      <div class="glass-blob blob-primary" style="bottom: 10%; right: -100px;"></div>
+      
+      <div class="floating-leaf" style="top: 20%; right: 10%; animation-delay: -2s;">
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="currentColor"><path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/></svg>
+      </div>
+      <div class="floating-leaf" style="bottom: 15%; left: 5%; animation-delay: -7s; transform: rotate(180deg);">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/></svg>
+      </div>
+
       <div class="container">
         <div class="about-layout">
           <div class="about-image" #aboutImage>
@@ -22,45 +32,42 @@ gsap.registerPlugin(ScrollTrigger);
               />
               <div class="image-accent"></div>
             </div>
-            <div class="floating-badge" #floatingBadge>
-              <span class="badge-number">100%</span>
-              <span class="badge-text">Natural</span>
-            </div>
+            
           </div>
           
           <div class="about-content" #aboutContent>
-            <span class="section-tag">Our Philosophy</span>
-            <h2 class="heading-display heading-lg">A Ritual, Not Just a Product</h2>
+            <span class="section-tag">Targeted Care</span>
+            <h2 class="heading-display heading-lg">Science of Regrowth, Soul of Ayurveda</h2>
             <p class="about-intro body-lg">
-              Smitha Pure Life Avosilk Bloom Conditioner is a blend of time-tested Ayurvedic 
-              ingredients designed to restore your hair&apos;s natural strength and shine.
+              Smitha Pure Life Follicra Regrowth Serum is a high-potency elixir 
+              engineered to activate dormant follicles and restore hair density.
             </p>
             <p class="about-detail">
-              Infused with hibiscus, shikakai, and herbal powders, it gently cleanses, nourishes, 
-              and protects your hair from damage. This is not just hair care &mdash; it&apos;s a return to nature.
+              By combining 15 potent botanical extracts with modern delivery systems, this serum 
+              penetrates deep into the scalp to nourish roots and significantly reduce hair fall. 
+              It&apos;s not just a serum; it&apos;s a second life for your hair.
             </p>
             <div class="about-features">
               <div class="feature">
                 <div class="feature-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
-                    <path d="M12 6v6l4 2"/>
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                   </svg>
                 </div>
                 <div class="feature-text">
-                  <h4>Time-Tested</h4>
-                  <p>Ancient Ayurvedic wisdom</p>
+                  <h4>Root Activation</h4>
+                  <p>Awakens dormant follicles</p>
                 </div>
               </div>
               <div class="feature">
                 <div class="feature-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
                   </svg>
                 </div>
                 <div class="feature-text">
-                  <h4>Carefully Crafted</h4>
-                  <p>Premium botanical blends</p>
+                  <h4>Follicle Nutrition</h4>
+                  <p>15 Potent botanical extracts</p>
                 </div>
               </div>
             </div>
@@ -71,7 +78,7 @@ gsap.registerPlugin(ScrollTrigger);
   `,
   styles: [`
     .about {
-      padding: var(--space-xl) 0;
+      padding: var(--space-lg) 0;
       background-color: var(--color-cream);
       overflow: hidden;
     }
@@ -94,8 +101,12 @@ gsap.registerPlugin(ScrollTrigger);
       
       img {
         width: 100%;
-        height: 500px;
-        object-fit: cover;
+        height: 350px;
+        object-fit: contain;
+        background: white;
+        padding: 2rem;
+        border: 1px solid rgba(26, 58, 47, 0.08);
+        border-radius: 24px;
       }
     }
     
@@ -243,7 +254,7 @@ export class AboutSectionComponent implements AfterViewInit, OnDestroy {
   @ViewChild('floatingBadge') floatingBadge!: ElementRef;
 
   private productService = inject(ProductService);
-  product = this.productService.products()[0];
+  product = this.productService.products()[2];
 
   private scrollTriggers: ScrollTrigger[] = [];
 

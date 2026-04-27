@@ -63,15 +63,15 @@ import { ProductService } from '../../services/product.service';
           </div>
           <div class="floating-ingredients">
             <div class="ingredient ingredient-1">
-              <img src="https://images.unsplash.com/photo-1596178060810-72f53ce9a65c?w=100&h=100&fit=crop" alt="Hibiscus" />
+              <img src="/assets/images/hero-hibiscus.jpg" alt="Hibiscus" />
               <span>Hibiscus</span>
             </div>
             <div class="ingredient ingredient-2">
-              <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=100&h=100&fit=crop" alt="Shikakai" />
+              <img src="/assets/images/hero-shikakai.jpg" alt="Shikakai" />
               <span>Shikakai</span>
             </div>
             <div class="ingredient ingredient-3">
-              <img src="https://images.unsplash.com/photo-1523293915678-d126868e96f1?w=100&h=100&fit=crop" alt="Herbal Powder" />
+              <img src="/assets/images/hero-herbal.jpg" alt="Herbal Powder" />
               <span>Herbal</span>
             </div>
           </div>

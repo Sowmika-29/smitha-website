@@ -44,11 +44,11 @@ interface Benefit {
             <div class="visual-wrapper">
               <div class="before-after">
                 <div class="comparison-image before">
-                  <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&h=600&fit=crop" alt="Before using Herbalia" />
+                  <img src="assets/images/transformation-before.png" alt="Before using Smitha Purelife" />
                   <span class="label">Before</span>
                 </div>
                 <div class="comparison-image after">
-                  <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=500&h=600&fit=crop" alt="After using Herbalia" />
+                  <img src="assets/images/transformation-after.png" alt="After 30 Days" />
                   <span class="label">After 30 Days</span>
                 </div>
               </div>
@@ -95,7 +95,7 @@ interface Benefit {
   `,
   styles: [`
     .benefits {
-      padding: var(--space-xl) 0;
+      padding: var(--space-lg) 0;
       background: transparent;
       perspective: 1200px;
     }

@@ -32,6 +32,7 @@ import { LoadingScreenComponent } from './components/loading-screen/loading-scre
     FooterComponent
   ],
   template: `
+    <div class="noise-overlay"></div>
     <app-loading-screen />
     <app-global-3d-background />
     <app-navbar />
