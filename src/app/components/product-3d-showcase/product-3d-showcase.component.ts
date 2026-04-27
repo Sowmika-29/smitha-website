@@ -353,16 +353,6 @@ export class Product3dShowcaseComponent implements OnInit, AfterViewInit, OnDest
     const bottleMesh = new THREE.Mesh(geometry, material);
     this.productGroup.add(bottleMesh);
 
-    // Add a shadow/glow behind the bottle
-    const shadowGeometry = new THREE.PlaneGeometry(3, 4.5);
-    const shadowMaterial = new THREE.MeshBasicMaterial({
-      color: 0x000000,
-      transparent: true,
-      opacity: 0.1,
-      blur: 20 // This is not a standard property, but we'll use a circular gradient texture if needed
-    });
-    // Instead of a fake property, let's just use a simple glow
-    
     // Add floating particles around jar
     this.createParticles();
   }
